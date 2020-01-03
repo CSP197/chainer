@@ -16,7 +16,10 @@ configs {
       memory: 30
     }
     time_limit: {
-      seconds: 900
+      seconds: 1200
+    }
+    checkout_strategy {
+      include_dot_git: true
     }
     environment_variables { key: "GPU" value: "0" }
     environment_variables {
@@ -35,7 +38,10 @@ configs {
       gpu: 2
     }
     time_limit: {
-      seconds: 900
+      seconds: 1200
+    }
+    checkout_strategy {
+      include_dot_git: true
     }
     environment_variables { key: "GPU" value: "2" }
     # NOTE: If # of threads / # of GPUs exceeds 10, GPU tests may cause
@@ -61,7 +67,10 @@ configs {
       memory: 30
     }
     time_limit: {
-      seconds: 900
+      seconds: 1200
+    }
+    checkout_strategy {
+      include_dot_git: true
     }
     environment_variables { key: "GPU" value: "0" }
     environment_variables {
@@ -80,7 +89,10 @@ configs {
       gpu: 2
     }
     time_limit: {
-      seconds: 900
+      seconds: 1200
+    }
+    checkout_strategy {
+      include_dot_git: true
     }
     environment_variables { key: "GPU" value: "2" }
     # NOTE: If # of threads / # of GPUs exceeds 10, GPU tests may cause
@@ -112,6 +124,9 @@ configs {
     time_limit: {
       seconds: 3600
     }
+    checkout_strategy {
+      include_dot_git: true
+    }
     command: "bash .pfnci/script.sh docker.py37.test"
   }
 }
@@ -124,6 +139,9 @@ configs {
     }
     time_limit: {
       seconds: 3600
+    }
+    checkout_strategy {
+      include_dot_git: true
     }
     command: "bash .pfnci/script.sh docker.py27and35.test"
   }
@@ -138,6 +156,9 @@ configs {
     time_limit: {
       seconds: 3600
     }
+    checkout_strategy {
+      include_dot_git: true
+    }
     command: "bash .pfnci/script.sh docker.py37.push"
   }
 }
@@ -150,6 +171,9 @@ configs {
     }
     time_limit: {
       seconds: 3600
+    }
+    checkout_strategy {
+      include_dot_git: true
     }
     command: "bash .pfnci/script.sh docker.py27and35.push"
   }
@@ -273,6 +297,9 @@ configs {
     time_limit: {
       seconds: 1200
     }
+    checkout_strategy {
+      include_dot_git: true
+    }
     command: "bash .pfnci/script.sh chainermn"
   }
 }
@@ -287,6 +314,9 @@ configs {
     }
     time_limit: {
       seconds: 900
+    }
+    checkout_strategy {
+      include_dot_git: true
     }
 	environment_variables { key: "GPU" value: "2" }
     command: "bash .pfnci/script.sh chainermn"
@@ -337,6 +367,22 @@ configs {
     }
     command: "sh onnx_chainer/.flexci/run_test.sh"
     environment_variables { key: "PYTHON_VER" value: "37" }
+  }
+}
+configs {
+  key: "onnxchainer.py37.cpu.onnx15"
+  value {
+    requirement {
+      cpu: 4
+      disk: 10
+      memory: 16
+    }
+    time_limit {
+      seconds: 600
+    }
+    command: "sh onnx_chainer/.flexci/run_test.sh"
+    environment_variables { key: "PYTHON_VER" value: "37" }
+    environment_variables { key: "ONNX_VER" value: "1.5" }
   }
 }
 configs {
@@ -398,6 +444,6 @@ configs {
     time_limit {
       seconds: 600
     }
-    command: "onnx_chainer\\.flexci\\run_test.bat 10_0 37"
+    command: "onnx_chainer\\.flexci\\run_test.bat 10.1 37"
   }
 }
